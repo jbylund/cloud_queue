@@ -1,0 +1,40 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.2.0
+  hooks:
+  - id: check-builtin-literals
+  - id: check-added-large-files
+  - id: check-case-conflict
+  - id: check-toml
+  - id: check-yaml
+  - id: debug-statements
+  - id: end-of-file-fixer
+    exclude: WHEEL
+  - id: forbid-new-submodules
+  - id: trailing-whitespace
+    exclude: .patch
+
+- repo: https://github.com/psf/black
+  rev: 22.3.0
+  hooks:
+  - id: black
+    args: [--line-length, "132"]
+
+- repo: https://github.com/PyCQA/flake8
+  rev: 4.0.1
+  hooks:
+  - id: flake8
+    additional_dependencies: [
+        'flake8-bugbear',
+        'flake8-implicit-str-concat',
+        'flake8-logging-format',
+    ]
+    args: [--max-line-length, "999"]
+    exclude: tests/data
+
+- repo: https://github.com/PyCQA/isort
+  rev: 5.10.1
+  hooks:
+  - id: isort
+    args: [-m, VERTICAL_HANGING_INDENT, --trailing-comma, --line-length, "132"]
+    files: \.py$
