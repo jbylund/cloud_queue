@@ -1,4 +1,5 @@
 """Cloud Queue Tests"""
+
 import logging
 import os
 import queue
